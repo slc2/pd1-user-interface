@@ -1,0 +1,29 @@
+<apex:page controller="SoqlInjectionEx">
+    <h1>SOQL Injection Example</h1>
+    <apex:form>
+        <apex:inputText value="{!name}" />
+        <apex:commandButton value="Vulnerable Query" action="{!query}" />
+        <apex:commandButton value="Query with Bind Variable" action="{!queryBind}" />
+        <apex:commandButton value="Query String Escaped" action="{!queryEscapeSingleQuotes}" />
+    </apex:form>
+    <apex:pageBlock title="Resulting SOQL Query">
+        <apex:outputText value="{!soqlText}"></apex:outputText>
+    </apex:pageBlock>
+    <apex:pageBlock title="Results of Query">
+        <apex:pageBlockTable value="{!queryResult}" var="record">
+            <apex:column>
+                <apex:facet name="header">Account Name</apex:facet>
+                <apex:outputText value="{!record.Name}" />
+            </apex:column>
+            <apex:column>
+                <apex:facet name="header">Type</apex:facet>
+                <apex:outputText value="{!record.Type}" />
+            </apex:column>
+            <apex:column>
+                <apex:facet name="header">Annual Revenue</apex:facet>
+                <apex:outputText value="{!record.AnnualRevenue}" />
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+
+</apex:page>
